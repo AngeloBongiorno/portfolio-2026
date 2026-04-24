@@ -1,0 +1,59 @@
+---
+// src/components/Navbar.astro
+const links = [
+  { href: '#about',    label: 'about'    },
+  { href: '#projects', label: 'projects' },
+  { href: '#skills',   label: 'skills'   },
+  { href: '#contact',  label: 'contact'  },
+];
+---
+
+<header class="navbar">
+  <a href="#" class="logo">angelo.</a>
+  <nav>
+    {links.map(link => (
+      <a href={link.href}>{link.label}</a>
+    ))}
+  </nav>
+</header>
+
+<style>
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 2rem;
+    border-bottom: 1px solid var(--border);
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .logo {
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+  }
+
+  nav {
+    display: flex;
+    gap: 2rem;
+  }
+
+  nav a {
+    font-size: 1.2rem;
+    /* font-size: 0.875rem; */
+    color: var(--muted);
+    transition: color 0.2s ease;
+  }
+
+  nav a:hover {
+    color: var(--text);
+  }
+</style>

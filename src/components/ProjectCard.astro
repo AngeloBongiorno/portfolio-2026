@@ -1,0 +1,162 @@
+---
+// src/components/ProjectCard.astro
+interface Props {
+        tag: string;
+        title: string;
+        description: string;
+        tech: string[];
+        additionalInfo: string[] | null;
+        status: string;
+        link: string | null;
+}
+
+const { tag, title, description, tech, additionalInfo, status, link } = Astro.props;
+---
+
+<article class={`card ${status === 'In progress' ? 'card--wip' : ''}`}>
+  <div class="card-header">
+    <span class="tag">{tag}</span>
+    {status === 'In progress' && <span class="wip-badge">In progress</span>}
+  </div>
+  <h3>{title}</h3>
+  <p class="desc">{description}</p>
+  {additionalInfo && (
+    <ul class="additional-info">
+      {additionalInfo.map(t => <li>{t}</li>)}
+    </ul>
+  )}
+  <div class="footer">
+    <ul class="tech-list">
+      {tech.map(t => <li>{t}</li>)}
+    </ul>
+    {link && (
+      <a href={link} target="_blank" rel="noopener noreferrer" class="card-link">
+        View →
+      </a>
+    )}
+  </div>
+</article>
+
+<style>
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: border-color 0.2s ease;
+  }
+
+  .card:hover {
+    border-color: var(--muted);
+  }
+
+  .card--wip {
+    border-color: rgba(129, 101, 141, 0.534);
+    /*border-color: rgba(163, 230, 53, 0.2);*/
+  }
+
+  .card--wip:hover {
+    /*border-color: rgba(163, 230, 53, 0.5);*/
+    border-color: rgb(129, 101, 141);
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .tag {
+    font-family: 'Geist Mono Variable', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .wip-badge {
+    font-size: 0.65rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 999px;
+    border: 1px solid rgba(163, 230, 53, 0.3);
+    color: var(--accent);
+    white-space: nowrap;
+  }
+
+  h3 {
+    font-size: 1.0625rem;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.35;
+  }
+
+  .desc {
+    font-size: 0.875rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+    flex: 1;
+  }
+
+  .footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+    gap: 1rem;
+  }
+
+  .tech-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    list-style: none;
+  }
+
+  .additional-info {
+    font-size: 0.875rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+    flex: 1;
+    list-style: none;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.2s ease;
+  }
+
+  .additional-info li::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .tech-list li {
+    font-family: 'Geist Mono Variable', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.15rem 0.5rem;
+  }
+
+  .card-link {
+    font-size: 0.8rem;
+    color: var(--accent);
+    white-space: nowrap;
+    transition: opacity 0.2s ease;
+  }
+
+  .card-link:hover {
+    opacity: 0.7;
+  }
+
+
+
+</style>
