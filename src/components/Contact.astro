@@ -1,0 +1,118 @@
+---
+// src/components/Contact.astro
+const links = [
+  { label: "Email",    href: "mailto:contact@angelobongiorno.com",                display: "contact@angelobongiorno.com"      },
+  { label: "GitHub",   href: "https://github.com/AngeloBongiorno",     display: "github.com/AngeloBongiorno"   },
+  { label: "LinkedIn", href: "https://linkedin.com/in/angelo-bongiorno-06a8302a3", display: "linkedin.com/in/angelo-bongiorno-06a8302a3" },
+];
+---
+
+<section class="contact" id="contact">
+  <div class="inner reveal">
+    <div class="section-header">
+      <span class="label">Get in touch</span>
+      <h2>Contacts</h2>
+    </div>
+    <p class="tagline">
+      Open to job offers, internships, and interesting projects.
+      Feel free to reach out!
+    </p>
+    <ul class="links">
+      {links.map(link => (
+        <li>
+          <span class="link-label">{link.label}</span>
+          <a href={link.href} target="_blank" rel="noopener noreferrer">
+            {link.display} <span class="arrow">↗</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+</section>
+
+<style>
+  .contact {
+    padding: 6rem 2rem;
+  }
+
+  .inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    margin-bottom: 3rem;
+  }
+
+  .label {
+    font-family: 'Geist Mono Variable', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  h2 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+
+  .tagline {
+    font-size: 1rem;
+    color: var(--text-dim);
+    line-height: 1.75;
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+    white-space: nowrap;
+  }
+
+  .links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 1.25rem 0;
+    border-top: 1px solid var(--border);
+  }
+
+  li:last-child {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .link-label {
+    font-family: 'Geist Mono Variable', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    width: 70px;
+    flex-shrink: 0;
+  }
+
+  a {
+    font-size: 0.9375rem;
+    color: var(--text-dim);
+    transition: color 0.2s ease;
+  }
+
+  a:hover {
+    color: var(--accent);
+  }
+
+  .arrow {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  a:hover .arrow {
+    opacity: 1;
+  }
+</style>

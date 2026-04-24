@@ -1,0 +1,28 @@
+---
+// src/components/Footer.astro
+---
+
+<footer>
+  <span class="left">© 2026 Angelo Bongiorno. Built with Astro & Tailwind.</span>
+</footer>
+
+<style>
+  footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 1.5rem 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  span {
+    font-size: 0.8125rem;
+    color: var(--muted);
+  }
+
+  .mono {
+    font-family: 'Geist Mono Variable', monospace;
+  }
+</style>

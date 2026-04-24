@@ -1,0 +1,247 @@
+---
+// src/components/About.astro
+---
+
+<section class="about" id="about">
+  <div class="inner reveal">
+    <div class="section-header">
+      <span class="label">Who I am</span>
+      <h2>About</h2>
+    </div>
+    <div class="content">
+      <div class="bio">
+        <p>
+          I'm Angelo, a Master of Science computer engineer based in Italy. I'm passionate
+          about building intelligent systems that solve real-world problems.  
+        </p>
+        <p>
+          My background spans machine learning, data engineering, and software
+          development. I enjoy working at the intersection of research and
+          practical application, taking ideas from paper to production.
+        </p>
+        <a href="/portfolio-2026/cv.pdf" target="_blank" class="cv-link">
+          Download CV <span>↗</span>
+        </a>
+        <div class="timeline">
+          <div class="timeline-item">
+            <span class="timeline-date">In progress</span>
+            <div class="timeline-body">
+              <span class="timeline-degree">Master di II livello — Artificial Intelligence</span>
+              <span class="timeline-school">Politecnico di Torino</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-date">2023 – 2025</span>
+            <div class="timeline-body">
+              <span class="timeline-degree">MSc Degree in Computer Engineering — AI & Data Analytics</span>
+              <span class="timeline-school">Politecnico di Torino</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-date">2019 – 2023</span>
+            <div class="timeline-body">
+              <span class="timeline-degree">Bachelor's Degree in Computer Engineering</span>
+              <span class="timeline-school">Politecnico di Bari</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="meta">
+          <div class="meta-photo">
+            <img src="/portfolio-2026/profile.jpg" alt="Angelo Bongiorno" />
+          </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about {
+    padding: 6rem 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    margin-bottom: 3rem;
+  }
+
+  .label {
+    font-family: 'Geist Mono Variable', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  h2 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+
+  .content {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .bio {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .bio p {
+    font-size: 1rem;
+    color: var(--text-dim);
+    line-height: 1.8;
+  }
+
+  .cv-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--accent);
+    transition: opacity 0.2s ease;
+  }
+
+  .cv-link:hover {
+    opacity: 0.7;
+  }
+
+  .meta {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 0.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+
+  .meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .meta-label {
+    font-family: 'Geist Mono Variable', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .meta-item span:not(.meta-label) {
+    font-size: 0.9rem;
+    color: var(--text);
+  }
+
+  .status-dot::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    margin-right: 0.4rem;
+    vertical-align: middle;
+  }
+
+  @media (max-width: 640px) {
+    .content {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+
+  .timeline {
+   display: flex;
+   flex-direction: column;
+   gap: 0;
+   margin-top: 0.5rem;
+   border-left: 1px solid var(--muted);
+  }
+
+  .timeline-item {
+   display: grid;
+   grid-template-columns: 80px 1fr;
+   gap: 0.75rem;
+   align-items: start;
+   padding: 0.75rem 0 0.75rem 1rem;
+   position: relative;
+  }
+
+  .timeline-item::before {
+   content: '';
+   position: absolute;
+   left: -3px;
+   top: 1.1rem;
+   width: 5px;
+   height: 5px;
+   border-radius: 50%;
+   background: var(--accent);
+  }
+
+  .timeline-date {
+   font-family: 'Geist Mono Variable', monospace;
+   font-size: 0.7rem;
+   color: var(--muted);
+   text-transform: uppercase;
+   letter-spacing: 0.05em;
+   padding-top: 0.1rem;
+   line-height: 1.4;
+   white-space: nowrap;
+  }
+
+  .timeline-body {
+   display: flex;
+   flex-direction: column;
+   gap: 0.15rem;
+  }
+
+  .timeline-degree {
+   font-size: 0.95rem;
+   color: var(--text);
+   line-height: 1.4;
+  }
+
+  .timeline-school {
+   font-size: 0.8rem;
+   color: var(--muted);
+  }
+
+  .meta-photo {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--border); 
+    border: 1px solid var(--border);
+  }
+
+  .meta-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center; 
+    display: block;
+    filter: grayscale(20%);
+    transition: filter 0.3s ease;
+  }
+
+  .meta-photo:hover img {
+    filter: grayscale(0%);
+  }
+</style>

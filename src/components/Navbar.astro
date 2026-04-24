@@ -9,7 +9,7 @@ const links = [
 ---
 
 <header class="navbar">
-  <a href="#" class="logo">angelo.</a>
+  <a href="#" class="logo">angelo bongiorno.</a>
   <nav>
     {links.map(link => (
       <a href={link.href}>{link.label}</a>
@@ -35,7 +35,7 @@ const links = [
   }
 
   .logo {
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: 600;
     letter-spacing: 0.04em;
     color: var(--accent);
@@ -56,4 +56,35 @@ const links = [
   nav a:hover {
     color: var(--text);
   }
+
+  nav a.active {
+    color: var(--text);
+  }
 </style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('nav a');
+
+    if (!sections.length || !navLinks.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            navLinks.forEach((link) => {
+              link.classList.toggle(
+                'active',
+                link.getAttribute('href') === `#${entry.target.id}`
+              );
+            });
+          }
+        });
+      },
+      { rootMargin: '-40% 0px -30% 0px', threshold: 0 }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+  });
+</script>
