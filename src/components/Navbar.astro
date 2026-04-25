@@ -15,7 +15,18 @@ const links = [
       <a href={link.href}>{link.label}</a>
     ))}
   </nav>
+  <button class="burger" id="burger" aria-label="Toggle menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 </header>
+
+<div class="mobile-menu" id="mobile-menu">
+  {links.map(link => (
+    <a href={link.href} class="mobile-link">{link.label}</a>
+  ))}
+</div>
 
 <style>
   .navbar {
@@ -48,21 +59,107 @@ const links = [
 
   nav a {
     font-size: 1.2rem;
-    /* font-size: 0.875rem; */
     color: var(--muted);
     transition: color 0.2s ease;
   }
 
-  nav a:hover {
+  nav a:hover, nav a.active {
     color: var(--text);
   }
 
-  nav a.active {
+  /* hamburger */
+  .burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .burger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--text);
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  /* mobile menu */
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 73px; /* height of navbar */
+    left: 0;
+    right: 0;
+    z-index: 99;
+    flex-direction: column;
+    background: rgba(10, 10, 10, 0.97);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 0;
+    transform: translateY(-10px);
+    opacity: 0;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+
+  .mobile-menu.open {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .mobile-link {
+    font-size: 1.1rem;
+    color: var(--muted);
+    padding: 0.85rem 2rem;
+    transition: color 0.2s ease, background 0.2s ease;
+  }
+
+  .mobile-link:hover {
     color: var(--text);
+    background: var(--surface);
+  }
+
+  /* burger open state */
+  .burger.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .burger.open span:nth-child(2) {
+    opacity: 0;
+  }
+  .burger.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  @media (max-width: 768px) {
+    nav { display: none; }
+    .burger { display: flex; }
+    .mobile-menu { display: flex; }
+
+    .logo { font-size: 1.2rem; }
   }
 </style>
 
 <script>
+  const burger = document.getElementById('burger');
+  const menu = document.getElementById('mobile-menu');
+
+  burger?.addEventListener('click', () => {
+    burger.classList.toggle('open');
+    menu?.classList.toggle('open');
+  });
+
+  // close menu when a link is tapped
+  document.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', () => {
+      burger?.classList.remove('open');
+      menu?.classList.remove('open');
+    });
+  });
+
+  // active nav highlight
   document.addEventListener('DOMContentLoaded', () => {
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('nav a');
