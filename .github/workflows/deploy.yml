@@ -24,11 +24,17 @@ jobs:
         with:
           node-version: 20
           cache: npm
+      # IMPORTANT: configures Pages + base path handling for frameworks like Astro
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
       - run: npm ci
       - run: npm run build
-      - uses: actions/upload-pages-artifact@v3
+      # Ensure this matches your actual build output directory:
+      # Astro default is usually "dist"
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          path: dist/
+          path: ./dist
 
   deploy:
     needs: build
